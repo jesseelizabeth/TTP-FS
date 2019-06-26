@@ -1,10 +1,40 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router-dom';
+import { Login, Signup, UserHome } from './components';
+import { me } from './store/user';
 
 class Routes extends Component {
+  componentDidMount() {
+    this.props.me();
+  }
   render() {
-    return <div>Routes</div>;
+    const { isLoggedIn } = this.props;
+    return (
+      <Switch>
+        <Route path="/login" component={Login} />
+        <Route path="/signup" component={Signup} />
+        {isLoggedIn ? (
+          <Switch>
+            <Route path="/home" component={UserHome} />
+          </Switch>
+        ) : (
+          <Route component={Login} />
+        )}
+      </Switch>
+    );
   }
 }
 
-export default Routes;
+const mapState = state => ({
+  isLoggedIn: !!state.user.id,
+});
+
+const mapDispatch = dispatch => ({
+  me: () => dispatch(me()),
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Routes);

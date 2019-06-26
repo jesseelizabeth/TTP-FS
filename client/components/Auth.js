@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth } from '../store';
+import { auth } from '../store/user';
 import AuthForm from './AuthForm';
 
 class Auth extends Component {
@@ -10,16 +10,17 @@ class Auth extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const method = event.target.method;
+    console.log('EVENT', event);
+    const formName = event.target.name;
     const email = event.target.email.value;
-    const password = event.target.email.value;
-    this.props.auth(email, password, method);
+    const password = event.target.password.value;
+    this.props.auth(email, password, formName);
   }
   render() {
-    const { method, displayName, error } = this.props;
+    const { formName, displayName, error } = this.props;
     return (
       <AuthForm
-        method={method}
+        name={formName}
         displayName={displayName}
         handleSubmit={() => this.handleSubmit(event)}
         error={error}
@@ -29,13 +30,13 @@ class Auth extends Component {
 }
 
 const mapLogin = state => ({
-  method: 'login',
+  formName: 'login',
   displayName: 'Login',
   error: state.user.error,
 });
 
 const mapSignup = state => ({
-  method: 'signup',
+  formName: 'signup',
   displayName: 'Sign Up',
   error: state.user.error,
 });
@@ -48,6 +49,7 @@ export const Login = connect(
   mapLogin,
   mapDispatch
 )(Auth);
+
 export const Signup = connect(
   mapSignup,
   mapDispatch

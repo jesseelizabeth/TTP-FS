@@ -1,11 +1,11 @@
 import React from 'react';
 
 const AuthForm = props => {
-  const { method, displayName, handleSubmit, error } = props;
+  const { name, displayName, handleSubmit, error } = props;
 
   return (
     <div>
-      <form onSubmit={handleSubmit} method={method}>
+      <form onSubmit={handleSubmit} name={name}>
         <div>
           <label htmlFor="email">
             <small>Email</small>
