@@ -10,6 +10,18 @@ const PORT = 8080;
 const app = express();
 module.exports = app;
 
+// passport registration
+passport.serializeUser((user, done) => done(null, user.id));
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await db.models.user.findByPk(id);
+    done(null, user);
+  } catch (err) {
+    done(err);
+  }
+});
+
 const createApp = () => {
   // logging middleware
   app.use(morgan('dev'));
