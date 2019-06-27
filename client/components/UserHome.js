@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Search from './Search';
 
-export const UserHome = props => {
-  const { email } = props;
-
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-    </div>
-  );
-};
+class UserHome extends Component {
+  render() {
+    const { email } = this.props;
+    return (
+      <div>
+        <h3>Welcome, {email}</h3>
+        <Search />
+      </div>
+    );
+  }
+}
 
 const mapState = state => {
   return {

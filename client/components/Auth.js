@@ -10,7 +10,6 @@ class Auth extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    console.log('EVENT', event);
     const formName = event.target.name;
     const email = event.target.email.value;
     const password = event.target.password.value;
