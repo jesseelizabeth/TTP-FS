@@ -15,7 +15,9 @@ class Search extends Component {
     event.preventDefault();
     const symbol = event.target.symbol.value;
     const { data } = await axios.get(
-      `https://cloud.iexapis.com/v1/stock/${symbol}/quote?token=${token.token}`
+      `https://cloud.iexapis.com/v1/stock/${symbol}/quote?displayPercent=true&token=${
+        token.token
+      }`
     );
     this.setState({ stock: data });
   }
@@ -27,11 +29,8 @@ class Search extends Component {
         <form onSubmit={this.handleSubmit}>
           <div>
             <label htmlFor="symbol">
-              <small>Ticker Symbol</small>
+              Ticker Symbol: <input name="symbol" type="text" />
             </label>
-            <input name="symbol" type="text" />
-          </div>
-          <div>
             <button type="submit">Search</button>
           </div>
         </form>
@@ -41,6 +40,9 @@ class Search extends Component {
             companyName={stock.companyName}
             symbol={stock.symbol}
             latestPrice={stock.latestPrice}
+            open={stock.open}
+            change={stock.change}
+            changePercent={stock.changePercent}
             high={stock.high}
             low={stock.low}
           />
