@@ -29,12 +29,12 @@ class StockInfo extends Component {
         <h1 className={this.state.color}>
           {companyName}, {symbol}
         </h1>
-        <h2 className={this.state.color}>${latestPrice}</h2>
+        <h2 className={this.state.color}>${latestPrice.toFixed(2)}</h2>
         <h5>
-          ${change} ({changePercent}%)
+          ${change.toFixed(2)} ({changePercent.toFixed(2)}%)
         </h5>
         <p>
-          high: ${high} | low: ${low}
+          high: ${high.toFixed(2)} | low: ${low.toFixed(2)}
         </p>
         <Buy symbol={symbol} />
       </div>

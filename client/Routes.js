@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
-import { Login, Signup, UserHome, StockInfo } from './components';
+import { Login, Signup, UserHome, StockInfo, Transactions } from './components';
 import { me } from './store/user';
 
 class Routes extends Component {
@@ -17,6 +17,7 @@ class Routes extends Component {
         {isLoggedIn ? (
           <Switch>
             <Route path="/home" component={UserHome} />
+            <Route path="/transactions" component={Transactions} />
           </Switch>
         ) : (
           <Route component={Login} />
