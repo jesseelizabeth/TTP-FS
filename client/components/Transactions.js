@@ -5,8 +5,8 @@ import StockListView from './StockListView';
 
 class Transactions extends Component {
   componentDidMount() {
-    const { fetchTransactions, user } = this.props;
-    fetchTransactions(user.id);
+    const { fetchTransactions } = this.props;
+    fetchTransactions();
   }
   render() {
     const { transactions } = this.props;
@@ -27,12 +27,11 @@ class Transactions extends Component {
 }
 
 const mapState = state => ({
-  user: state.user,
   transactions: state.transactions,
 });
 
 const mapDispatch = dispatch => ({
-  fetchTransactions: userId => dispatch(fetchTransactions(userId)),
+  fetchTransactions: () => dispatch(fetchTransactions()),
 });
 
 export default connect(

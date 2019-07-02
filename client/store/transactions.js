@@ -10,8 +10,8 @@ const gotTransactions = transactions => ({
 });
 
 // thunk
-export const fetchTransactions = userId => async dispatch => {
-  const { data } = await axios.get(`/api/transactions/${userId}`);
+export const fetchTransactions = () => async dispatch => {
+  const { data } = await axios.get('/api/transactions');
   dispatch(gotTransactions(data));
 };
 
