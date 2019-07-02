@@ -15,6 +15,9 @@ const Transaction = db.define('transaction', {
       min: 0,
     },
   },
+  price: {
+    type: Sequelize.DECIMAL,
+  },
 });
 
 module.exports = Transaction;

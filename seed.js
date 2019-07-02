@@ -8,9 +8,27 @@ const seed = async () => {
   // seed your database here!
   await Promise.all([
     await User.create({ email: 'test@test.com', password: 'test' }),
-    Transaction.create({ type: 'buy', symbol: 'AAPL', shares: 10, userId: 1 }),
-    Transaction.create({ type: 'buy', symbol: 'AAPL', shares: 2, userId: 1 }),
-    Transaction.create({ type: 'buy', symbol: 'TWTR', shares: 20, userId: 1 }),
+    Transaction.create({
+      type: 'buy',
+      symbol: 'AAPL',
+      shares: 10,
+      price: 201.1,
+      userId: 1,
+    }),
+    Transaction.create({
+      type: 'buy',
+      symbol: 'AAPL',
+      shares: 2,
+      price: 100.1,
+      userId: 1,
+    }),
+    Transaction.create({
+      type: 'buy',
+      symbol: 'TWTR',
+      shares: 20,
+      price: 36.17,
+      userId: 1,
+    }),
     Stock.create({ symbol: 'AAPL', shares: 12, userId: 1 }),
     Stock.create({ symbol: 'TWTR', shares: 20, userId: 1 }),
   ]);
