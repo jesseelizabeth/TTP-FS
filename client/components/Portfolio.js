@@ -1,25 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPortfolio } from '../store/portfolio';
-import StockListView from './StockListView';
+import PortfolioView from './PortfolioView';
 
 class Portfolio extends Component {
-  componentDidMount() {
-    this.props.fetchPortfolio();
+  async componentDidMount() {
+    await this.props.fetchPortfolio();
   }
   render() {
     const { portfolio } = this.props;
-    return (
-      <div>
-        {portfolio.map(stock => (
-          <StockListView
-            key={stock.id}
-            symbol={stock.symbol}
-            shares={stock.shares}
-          />
-        ))}
-      </div>
-    );
+    return portfolio.map(stock => (
+      <PortfolioView key={stock.id} stock={stock} />
+    ));
   }
 }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
 const StockListView = props => {
-  const { type, symbol, shares, price } = props;
+  const { type, symbol, shares, price, currentValue } = props;
   return type ? (
     <div>
       <h4>
@@ -11,7 +11,7 @@ const StockListView = props => {
   ) : (
     <div>
       <h4>
-        {symbol} - {shares} shares
+        {symbol} - {shares} shares - ${currentValue.toFixed(2)}
       </h4>
     </div>
   );
