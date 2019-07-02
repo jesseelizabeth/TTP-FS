@@ -11,7 +11,7 @@ const StockListView = props => {
   ) : (
     <div>
       <h4>
-        {symbol} {shares}
+        {symbol} - {shares} shares
       </h4>
     </div>
   );
