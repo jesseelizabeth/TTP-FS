@@ -26,14 +26,19 @@ class Search extends Component {
     const { stock } = this.state;
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="symbol">
-              Ticker Symbol: <input name="symbol" type="text" />
-            </label>
-            <button type="submit">Search</button>
+        <div className="row">
+          <div className="col s12 m4 offset-m4">
+            <form onSubmit={this.handleSubmit}>
+              <div className="input-field">
+                <label htmlFor="input_text">Ticker Symbol</label>
+                <input name="symbol" type="text" />
+              </div>
+              <button className="teal accent-3 btn-small" type="submit">
+                Search
+              </button>
+            </form>
           </div>
-        </form>
+        </div>
         {stock.symbol ? (
           <StockInfo
             key={stock.symbol}

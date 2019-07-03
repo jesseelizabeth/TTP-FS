@@ -6,9 +6,9 @@ class UserHome extends Component {
   render() {
     const { email, balance } = this.props.user;
     return (
-      <div>
-        <h3>Welcome, {email}</h3>
-        <h4>Current balance: ${balance}</h4>
+      <div className="center-align">
+        <h5>Welcome, {email}</h5>
+        <p>Current balance: ${balance}</p>
         <Search />
       </div>
     );

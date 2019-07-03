@@ -3,17 +3,18 @@ import React from 'react';
 const StockListView = props => {
   const { type, symbol, shares, price, currentValue, color } = props;
   return type ? (
-    <div>
-      <h4>
-        {type.toUpperCase()} ({symbol}) - {shares} shares @ ${price}
-      </h4>
-    </div>
+    <tr>
+      <td>{type.toUpperCase()}</td>
+      <td>{symbol}</td>
+      <td>{shares} shares</td>
+      <td>@ ${price}</td>
+    </tr>
   ) : (
-    <div>
-      <h4 className={color}>
-        {symbol} - {shares} shares - ${currentValue.toFixed(2)}
-      </h4>
-    </div>
+    <tr>
+      <td className={color}>{symbol}</td>
+      <td>{shares} shares</td>
+      <td className={color}>${currentValue.toFixed(2)}</td>
+    </tr>
   );
 };
 

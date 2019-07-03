@@ -11,15 +11,16 @@ class Transactions extends Component {
   render() {
     const { transactions } = this.props;
     return (
-      <div>
+      <div className="collection">
         {transactions.map(transaction => (
-          <StockListView
-            key={transaction.id}
-            type={transaction.type}
-            symbol={transaction.symbol}
-            shares={transaction.shares}
-            price={transaction.price}
-          />
+          <div className="collection-item" key={transaction.id}>
+            <StockListView
+              type={transaction.type}
+              symbol={transaction.symbol}
+              shares={transaction.shares}
+              price={transaction.price}
+            />
+          </div>
         ))}
       </div>
     );

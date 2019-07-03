@@ -9,7 +9,7 @@ class PortfolioView extends Component {
     this.state = {
       price: null,
       open: null,
-      color: 'grey',
+      color: 'grey-text',
     };
   }
   async componentDidMount() {
@@ -22,9 +22,9 @@ class PortfolioView extends Component {
     this.setState({ price: data.latestPrice, open: data.open });
 
     const { open, price } = this.state;
-    if (open === price) this.setState({ color: 'grey' });
-    else if (open < price) this.setState({ color: 'green' });
-    else this.setState({ color: 'red' });
+    if (open === price) this.setState({ color: 'grey-text' });
+    else if (open < price) this.setState({ color: 'green-text' });
+    else this.setState({ color: 'red-text' });
   }
   render() {
     const { symbol, shares } = this.props.stock;
