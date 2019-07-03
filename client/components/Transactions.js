@@ -4,9 +4,9 @@ import { fetchTransactions } from '../store/transactions';
 import StockListView from './StockListView';
 
 class Transactions extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     const { fetchTransactions } = this.props;
-    fetchTransactions();
+    await fetchTransactions();
   }
   render() {
     const { transactions } = this.props;

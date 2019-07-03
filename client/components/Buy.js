@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { buyStock } from '../store/transactions';
 
 class Buy extends Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit() {}
+  handleSubmit(event) {
+    event.preventDefault();
+    const { symbol, price, buyStock } = this.props;
+    const shares = event.target.shares.value;
+    buyStock({ type: 'buy', symbol, shares, price });
+  }
   render() {
     const { symbol } = this.props;
     return (
@@ -23,4 +29,11 @@ class Buy extends Component {
   }
 }
 
-export default Buy;
+const mapDispatch = dispatch => ({
+  buyStock: transaction => dispatch(buyStock(transaction)),
+});
+
+export default connect(
+  null,
+  mapDispatch
+)(Buy);

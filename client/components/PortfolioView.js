@@ -8,25 +8,34 @@ class PortfolioView extends Component {
     super();
     this.state = {
       price: null,
+      open: null,
+      color: 'grey',
     };
   }
   async componentDidMount() {
     const { stock } = this.props;
     const { data } = await axios.get(
-      `https://cloud.iexapis.com/v1/stock/${stock.symbol}/price?token=${
-        token.token
-      }`
+      `https://cloud.iexapis.com/v1/stock/${
+        stock.symbol
+      }/quote?displayPercent=true&token=${token.token}`
     );
-    this.setState({ price: data });
+    this.setState({ price: data.latestPrice, open: data.open });
+
+    const { open, price } = this.state;
+    if (open === price) this.setState({ color: 'grey' });
+    else if (open < price) this.setState({ color: 'green' });
+    else this.setState({ color: 'red' });
   }
   render() {
     const { symbol, shares } = this.props.stock;
-    const currentValue = this.state.price * shares;
+    const { color, price } = this.state;
+    const currentValue = price * shares;
     return (
       <StockListView
         symbol={symbol}
         shares={shares}
         currentValue={currentValue}
+        color={color}
       />
     );
   }

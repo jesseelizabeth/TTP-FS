@@ -36,7 +36,7 @@ class StockInfo extends Component {
         <p>
           high: ${high.toFixed(2)} | low: ${low.toFixed(2)}
         </p>
-        <Buy symbol={symbol} />
+        <Buy symbol={symbol} price={latestPrice} />
       </div>
     );
   }
