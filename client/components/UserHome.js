@@ -4,10 +4,10 @@ import Search from './Search';
 
 class UserHome extends Component {
   render() {
-    const { email, balance } = this.props.user;
+    const { firstName, balance } = this.props.user;
     return (
       <div className="center-align">
-        <h5>Welcome, {email}</h5>
+        <h5>Welcome back, {firstName}!</h5>
         <p>Current balance: ${balance}</p>
         <Search />
       </div>

@@ -22,13 +22,13 @@ export const fetchPortfolio = () => async dispatch => {
 };
 
 // initial state
-const initalState = {
+const initialState = {
   stocks: [],
   loading: false,
 };
 
 // reducer
-export default function(state = initalState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case LOADING_PORTFOLIO:
       return { ...state, loading: true };

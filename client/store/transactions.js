@@ -15,9 +15,9 @@ const gotTransactions = transactions => ({
   transactions,
 });
 
-const boughtStock = stock => ({
+const boughtStock = transaction => ({
   type: BUY_STOCK,
-  stock,
+  transaction,
 });
 
 // thunk
@@ -33,20 +33,24 @@ export const buyStock = transaction => async dispatch => {
 };
 
 // initial state
-const initalState = {
+const initialState = {
   all: [],
   loading: false,
 };
 
 // reducer
-export default function(state = initalState, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
     case LOADING_TRANSACTIONS:
       return { ...state, loading: true };
     case FETCH_TRANSACTIONS:
       return { ...state, all: action.transactions, loading: false };
     case BUY_STOCK:
-      return { ...state, all: [...state.all, action.transaction] };
+      return {
+        ...state,
+        all: [...state.all, action.transaction],
+        loading: false,
+      };
     default:
       return state;
   }

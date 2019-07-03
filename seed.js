@@ -7,7 +7,12 @@ const seed = async () => {
 
   // seed your database here!
   await Promise.all([
-    await User.create({ email: 'test@test.com', password: 'test' }),
+    await User.create({
+      firstName: 'Jesse',
+      lastName: 'Test',
+      email: 'test@test.com',
+      password: 'test',
+    }),
     Transaction.create({
       type: 'buy',
       symbol: 'AAPL',

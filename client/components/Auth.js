@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { auth } from '../store/user';
+import { signup, login } from '../store/user';
 import AuthForm from './AuthForm';
 
 class Auth extends Component {
@@ -10,16 +10,22 @@ class Auth extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const formName = event.target.name;
+    const method = event.target.name;
     const email = event.target.email.value;
     const password = event.target.password.value;
-    this.props.auth(email, password, formName);
+    if (method === 'signup') {
+      const firstName = event.target.firstName.value;
+      const lastName = event.target.lastName.value;
+      this.props.signup(firstName, lastName, email, password);
+    } else {
+      this.props.login(email, password);
+    }
   }
   render() {
-    const { formName, displayName, error } = this.props;
+    const { method, displayName, error } = this.props;
     return (
       <AuthForm
-        name={formName}
+        name={method}
         displayName={displayName}
         handleSubmit={() => this.handleSubmit(event)}
         error={error}
@@ -29,19 +35,21 @@ class Auth extends Component {
 }
 
 const mapLogin = state => ({
-  formName: 'login',
+  method: 'login',
   displayName: 'Login',
   error: state.user.error,
 });
 
 const mapSignup = state => ({
-  formName: 'signup',
+  method: 'signup',
   displayName: 'Sign Up',
   error: state.user.error,
 });
 
 const mapDispatch = dispatch => ({
-  auth: (email, password, method) => dispatch(auth(email, password, method)),
+  signup: (firstName, lastName, email, password) =>
+    dispatch(signup(firstName, lastName, email, password)),
+  login: (email, password) => dispatch(login(email, password)),
 });
 
 export const Login = connect(

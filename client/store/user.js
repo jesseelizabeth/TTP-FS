@@ -28,10 +28,38 @@ export const me = () => async dispatch => {
   }
 };
 
-export const auth = (email, password, method) => async dispatch => {
+export const login = (email, password) => async dispatch => {
   let res;
   try {
-    res = await axios.post(`/auth/${method}`, { email, password });
+    res = await axios.post('/auth/login', {
+      email,
+      password,
+    });
+  } catch (error) {
+    return dispatch(getUser({ error }));
+  }
+  try {
+    dispatch(getUser(res.data));
+    history.push('/home');
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const signup = (
+  firstName,
+  lastName,
+  email,
+  password
+) => async dispatch => {
+  let res;
+  try {
+    res = await axios.post('/auth/signup', {
+      firstName,
+      lastName,
+      email,
+      password,
+    });
   } catch (error) {
     return dispatch(getUser({ error }));
   }

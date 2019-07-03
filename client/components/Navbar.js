@@ -37,7 +37,7 @@ class Navbar extends Component {
               </ul>
             </div>
           ) : (
-            <div className="nav-wrapper">
+            <div className="nav-wrapper teal accent-4">
               <ul id="nav-mobile" className="right hide-on-med-and-down">
                 <li>
                   <Link to="/login">Login</Link>
