@@ -8,18 +8,23 @@ class Search extends Component {
     super();
     this.state = {
       stock: {},
+      symbol: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ symbol: event.target.value });
   }
   async handleSubmit(event) {
     event.preventDefault();
-    const symbol = event.target.symbol.value;
+    const { symbol } = this.state;
     const { data } = await axios.get(
       `https://cloud.iexapis.com/v1/stock/${symbol}/quote?displayPercent=true&token=${
         token.token
       }`
     );
-    this.setState({ stock: data });
+    this.setState({ stock: data, symbol: '' });
   }
 
   render() {
@@ -31,7 +36,11 @@ class Search extends Component {
             <form onSubmit={this.handleSubmit}>
               <div className="input-field">
                 <label htmlFor="input_text">Ticker Symbol</label>
-                <input name="symbol" type="text" />
+                <input
+                  type="text"
+                  value={this.state.symbol}
+                  onChange={this.handleChange}
+                />
               </div>
               <button className="teal accent-3 btn-small" type="submit">
                 Search
