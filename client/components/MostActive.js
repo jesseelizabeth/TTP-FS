@@ -20,19 +20,21 @@ class MostActive extends Component {
   render() {
     const { mostActive } = this.state;
     return (
-      <div>
-        <div>Most Active</div>
-        <table className="highlight">
-          <tbody>
-            {mostActive.map(stock => (
-              <tr key={stock.symbol}>
-                <td>{stock.symbol}</td>
-                <td>${stock.latestPrice.toFixed(2)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      <table className="highlight">
+        <thead>
+          <tr>
+            <th>Most Active</th>
+          </tr>
+        </thead>
+        <tbody>
+          {mostActive.map(stock => (
+            <tr key={stock.symbol}>
+              <td>{stock.symbol}</td>
+              <td>${stock.latestPrice.toFixed(2)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     );
   }
 }
