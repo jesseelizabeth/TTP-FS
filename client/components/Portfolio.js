@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPortfolio } from '../store/portfolio';
 import PortfolioView from './PortfolioView';
+import LoadingScreen from './LoadingScreen';
 
 class Portfolio extends Component {
-  async componentDidMount() {
-    await this.props.fetchPortfolio();
+  componentDidMount() {
+    this.props.fetchPortfolio();
   }
   render() {
-    const { portfolio, user } = this.props;
+    const { portfolio, user, loading } = this.props;
+    if (loading) return <LoadingScreen />;
     return (
       <div>
         <div className="collection">
@@ -27,7 +29,8 @@ class Portfolio extends Component {
 }
 
 const mapState = state => ({
-  portfolio: state.portfolio,
+  portfolio: state.portfolio.stocks,
+  loading: state.portfolio.loading,
   user: state.user,
 });
 

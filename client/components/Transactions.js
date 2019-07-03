@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTransactions } from '../store/transactions';
 import StockListView from './StockListView';
+import LoadingScreen from './LoadingScreen';
 
 class Transactions extends Component {
-  async componentDidMount() {
+  componentDidMount() {
     const { fetchTransactions } = this.props;
-    await fetchTransactions();
+    fetchTransactions();
   }
   render() {
-    const { transactions } = this.props;
+    const { transactions, loading } = this.props;
+    if (loading) return <LoadingScreen />;
     return (
       <div className="collection">
         {transactions.map(transaction => (
@@ -28,7 +30,8 @@ class Transactions extends Component {
 }
 
 const mapState = state => ({
-  transactions: state.transactions,
+  transactions: state.transactions.all,
+  loading: state.transactions.loading,
 });
 
 const mapDispatch = dispatch => ({
