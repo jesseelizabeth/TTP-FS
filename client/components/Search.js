@@ -35,11 +35,11 @@ class Search extends Component {
           <div className="col s12 m4 offset-m4">
             <form onSubmit={this.handleSubmit}>
               <div className="input-field">
-                <label htmlFor="input_text">Ticker Symbol</label>
                 <input
                   type="text"
                   value={this.state.symbol}
                   onChange={this.handleChange}
+                  placeholder="Ticker Symbol"
                 />
               </div>
               <button className="teal accent-3 btn-small" type="submit">
@@ -48,19 +48,23 @@ class Search extends Component {
             </form>
           </div>
         </div>
-        {stock.symbol ? (
-          <StockInfo
-            key={stock.symbol}
-            companyName={stock.companyName}
-            symbol={stock.symbol}
-            latestPrice={stock.latestPrice}
-            open={stock.open}
-            change={stock.change}
-            changePercent={stock.changePercent}
-            high={stock.high}
-            low={stock.low}
-          />
-        ) : null}
+        <div className="row">
+          <div className="col s6 offset-s3">
+            {stock.symbol ? (
+              <StockInfo
+                key={stock.symbol}
+                companyName={stock.companyName}
+                symbol={stock.symbol}
+                latestPrice={stock.latestPrice}
+                open={stock.open}
+                change={stock.change}
+                changePercent={stock.changePercent}
+                high={stock.high}
+                low={stock.low}
+              />
+            ) : null}
+          </div>
+        </div>
       </div>
     );
   }

@@ -23,8 +23,6 @@ router.post('/', async (req, res, next) => {
       price: req.body.price,
       userId: req.user.id,
     });
-    console.log('TRANSACTION', transaction);
-    res.json(transaction);
 
     // update stock to reflect transaction
     const stockToUpdate = await Stock.findOne({
@@ -49,6 +47,8 @@ router.post('/', async (req, res, next) => {
     await user.update({
       balance: user.balance - transaction.shares * transaction.price,
     });
+
+    res.json(transaction);
   } catch (error) {
     next(error);
   }

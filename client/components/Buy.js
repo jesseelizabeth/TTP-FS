@@ -37,17 +37,22 @@ class Buy extends Component {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <div className="input-field">
-            <label htmlFor="input_text">Shares</label>
-            <input
-              type="text"
-              value={this.state.shares}
-              onChange={this.handleChange}
-            />
+          <div className="row">
+            <div className="input-field">
+              <input
+                type="text"
+                value={this.state.shares}
+                onChange={this.handleChange}
+                placeholder="Shares"
+                className="col s4 offset-s4"
+              />
+            </div>
           </div>
-          <button className="teal accent-3 btn-small" type="submit">
-            Buy {symbol}
-          </button>
+          <div className="row">
+            <button className="teal accent-3 btn-small" type="submit">
+              Buy {symbol}
+            </button>
+          </div>
         </form>
       </div>
     );
