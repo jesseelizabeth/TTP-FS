@@ -49,7 +49,6 @@ export default function(state = initialState, action) {
       return {
         ...state,
         all: [...state.all, action.transaction],
-        loading: false,
       };
     default:
       return state;
