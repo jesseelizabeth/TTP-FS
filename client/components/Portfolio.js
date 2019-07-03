@@ -17,6 +17,8 @@ class Portfolio extends Component {
           <div className="collection-item right">
             Current balance: ${user.balance}
           </div>
+        </div>
+        <div className="collection">
           {portfolio.map(stock => (
             <div className="collection-item" key={stock.id}>
               <PortfolioView stock={stock} />

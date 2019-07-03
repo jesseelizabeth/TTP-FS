@@ -17,13 +17,20 @@ class Buy extends Component {
   }
   handleSubmit(event) {
     event.preventDefault();
-    const { symbol, price, buyStock } = this.props;
+    const { symbol, price, buyStock, balance } = this.props;
     const { shares } = this.state;
-    buyStock({ type: 'buy', symbol, shares, price });
+    const total = shares * price;
+    if (total <= balance && shares % 1 === 0) {
+      buyStock({ type: 'buy', symbol, shares, price });
+      M.toast({
+        html: `Your purchase was submitted: ${symbol} - ${shares} shares`,
+      });
+    } else if (shares % 1 !== 0) {
+      M.toast({ html: 'Must buy a whole number of shares!' });
+    } else {
+      M.toast({ html: 'Insufficient balance for purchase' });
+    }
     this.setState({ shares: '' });
-    M.toast({
-      html: `Your purchase was submitted: ${symbol} - ${shares} shares`,
-    });
   }
   render() {
     const { symbol } = this.props;
@@ -47,11 +54,15 @@ class Buy extends Component {
   }
 }
 
+const mapState = state => ({
+  balance: state.user.balance,
+});
+
 const mapDispatch = dispatch => ({
   buyStock: transaction => dispatch(buyStock(transaction)),
 });
 
 export default connect(
-  null,
+  mapState,
   mapDispatch
 )(Buy);

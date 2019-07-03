@@ -6,8 +6,7 @@ import LoadingScreen from './LoadingScreen';
 
 class Transactions extends Component {
   componentDidMount() {
-    const { fetchTransactions } = this.props;
-    fetchTransactions();
+    this.props.fetchTransactions();
   }
   render() {
     const { transactions, loading } = this.props;
