@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
-import axios from 'axios';
-import token from '../../secrets';
+import { connect } from 'react-redux';
+import { getQuote } from '../store/stockQuote';
 import StockInfo from './StockInfo';
 
 class Search extends Component {
   constructor() {
     super();
     this.state = {
-      stock: {},
       symbol: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,19 +15,15 @@ class Search extends Component {
   handleChange(event) {
     this.setState({ symbol: event.target.value });
   }
-  async handleSubmit(event) {
+  handleSubmit(event) {
     event.preventDefault();
     const { symbol } = this.state;
-    const { data } = await axios.get(
-      `https://cloud.iexapis.com/v1/stock/${symbol}/quote?displayPercent=true&token=${
-        token.token
-      }`
-    );
-    this.setState({ stock: data, symbol: '' });
+    this.props.getQuote(symbol);
+    this.setState({ symbol: '' });
   }
 
   render() {
-    const { stock } = this.state;
+    const { stock } = this.props;
     return (
       <div>
         <div className="row">
@@ -39,7 +34,7 @@ class Search extends Component {
                   type="text"
                   value={this.state.symbol}
                   onChange={this.handleChange}
-                  placeholder="Ticker Symbol"
+                  placeholder="Ticker"
                 />
               </div>
               <button className="teal accent-3 btn-small" type="submit">
@@ -59,8 +54,6 @@ class Search extends Component {
                 open={stock.open}
                 change={stock.change}
                 changePercent={stock.changePercent}
-                high={stock.high}
-                low={stock.low}
               />
             ) : null}
           </div>
@@ -70,4 +63,15 @@ class Search extends Component {
   }
 }
 
-export default Search;
+const mapState = state => ({
+  stock: state.stockQuote,
+});
+
+const mapDispatch = dispatch => ({
+  getQuote: ticker => dispatch(getQuote(ticker)),
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(Search);

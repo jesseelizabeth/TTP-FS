@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchPortfolio } from '../store/portfolio';
-import PortfolioView from './PortfolioView';
+import { getQuote } from '../store/stockQuote';
+import PortfolioListView from './PortfolioListView';
 import LoadingScreen from './LoadingScreen';
 
 class Portfolio extends Component {
@@ -21,7 +22,7 @@ class Portfolio extends Component {
         <div className="collection">
           {portfolio.map(stock => (
             <div className="collection-item" key={stock.id}>
-              <PortfolioView stock={stock} />
+              <PortfolioListView stock={stock} />
             </div>
           ))}
         </div>
@@ -38,6 +39,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   fetchPortfolio: () => dispatch(fetchPortfolio()),
+  getQuote: ticker => dispatch(getQuote(ticker)),
 });
 
 export default connect(

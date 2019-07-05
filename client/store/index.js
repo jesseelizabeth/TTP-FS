@@ -5,8 +5,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 import user from './user';
 import transactions from './transactions';
 import portfolio from './portfolio';
+import stockQuote from './stockQuote';
 
-const reducer = combineReducers({ user, transactions, portfolio });
+const reducer = combineReducers({ user, transactions, portfolio, stockQuote });
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({ collapsed: true }))
 );

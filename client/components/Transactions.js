@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchTransactions } from '../store/transactions';
-import StockListView from './StockListView';
+import TransactionListView from './TransactionListView';
 import LoadingScreen from './LoadingScreen';
 
 class Transactions extends Component {
@@ -15,7 +15,7 @@ class Transactions extends Component {
       <div className="collection">
         {transactions.map(transaction => (
           <div className="collection-item" key={transaction.id}>
-            <StockListView
+            <TransactionListView
               type={transaction.type}
               symbol={transaction.symbol}
               shares={transaction.shares}
