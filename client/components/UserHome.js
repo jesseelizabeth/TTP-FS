@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from './Search';
-import { formatBalance } from '../../utils';
+import { getBalance } from '../store/portfolio';
 
 class UserHome extends Component {
+  componentDidMount() {
+    this.props.getBalance();
+  }
   render() {
-    const { firstName, balance } = this.props.user;
+    const { firstName, balance } = this.props;
     return (
       <div className="center-align">
         <h5>Welcome back, {firstName}!</h5>
@@ -17,7 +20,15 @@ class UserHome extends Component {
 }
 
 const mapState = state => ({
-  user: state.user,
+  firstName: state.user.firstName,
+  balance: state.portfolio.balance,
 });
 
-export default connect(mapState)(UserHome);
+const mapDispatch = dispatch => ({
+  getBalance: () => dispatch(getBalance()),
+});
+
+export default connect(
+  mapState,
+  mapDispatch
+)(UserHome);

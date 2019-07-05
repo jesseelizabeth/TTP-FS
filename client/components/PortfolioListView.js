@@ -5,10 +5,12 @@ class PortfolioListView extends Component {
     const { symbol, shares, currentValue, color, price } = this.props;
     return (
       <div className="row">
-        <div className={`col ${color}`}>{symbol}</div>
-        <div className="col">{shares} shares</div>
-        <div className="col">${currentValue.toFixed(2)}</div>
-        <div className={`col ${color}`}>Current Price: ${price}</div>
+        <div className={`col m2 ${color}`}>{symbol}</div>
+        <div className="col m2">
+          {shares} {shares === 1 ? 'share' : 'shares'}
+        </div>
+        <div className="col m2">${currentValue.toFixed(2)}</div>
+        <div className={`col m2 ${color}`}>${price}</div>
       </div>
     );
   }

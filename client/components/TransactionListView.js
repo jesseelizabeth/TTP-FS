@@ -4,10 +4,12 @@ const TransactionListView = props => {
   const { type, symbol, shares, price } = props;
   return (
     <div className="row">
-      <div className="col">{type.toUpperCase()}</div>
-      <div className="col">{symbol}</div>
-      <div className="col">{shares} shares</div>
-      <div className="col">@ ${price}</div>
+      <div className="col m2">{type.toUpperCase()}</div>
+      <div className="col m2">{symbol}</div>
+      <div className="col m2">
+        {shares} {shares === 1 ? 'share' : 'shares'}
+      </div>
+      <div className="col m2">${price}</div>
     </div>
   );
 };
