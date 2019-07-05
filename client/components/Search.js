@@ -44,7 +44,7 @@ class Search extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="col s6 offset-s3">
+          <div className="col s12 m4 offset-m4">
             {stock.symbol ? (
               <StockInfo
                 key={stock.symbol}
