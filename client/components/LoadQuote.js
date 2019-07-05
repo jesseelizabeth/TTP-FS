@@ -28,7 +28,7 @@ class LoadQuote extends Component {
   }
   render() {
     const { symbol, shares } = this.props.stock;
-    const { color, price, open } = this.state;
+    const { color, price } = this.state;
     const currentValue = price * shares;
     return (
       <PortfolioListView
@@ -37,7 +37,6 @@ class LoadQuote extends Component {
         currentValue={currentValue}
         color={color}
         price={price}
-        open={open}
       />
     );
   }
