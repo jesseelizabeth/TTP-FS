@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Search from './Search';
+import { formatBalance } from '../../utils';
 
 class UserHome extends Component {
   render() {
