@@ -50,7 +50,11 @@ class Buy extends Component {
             </div>
           </div>
           <div className="row">
-            <button className="teal accent-3 btn-small" type="submit">
+            <button
+              disabled={!this.state.shares}
+              className="teal accent-3 btn-small"
+              type="submit"
+            >
               Buy {symbol}
             </button>
           </div>
