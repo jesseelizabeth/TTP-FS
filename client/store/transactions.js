@@ -1,57 +1,72 @@
-import axios from 'axios';
+// import axios from 'axios';
 
-// action types
-const LOADING_TRANSACTIONS = 'LOADING_TRANSACTIONS';
-const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
-const BUY_STOCK = 'BUY_STOCK';
+// // action types
+// const LOADING_TRANSACTIONS = 'LOADING_TRANSACTIONS';
+// const FETCH_TRANSACTIONS = 'FETCH_TRANSACTIONS';
+// const BUY_STOCK = 'BUY_STOCK';
+// const SELL_STOCK = 'SELL_STOCK';
 
-// action creators
-const loadingTransactions = () => ({
-  type: LOADING_TRANSACTIONS,
-});
+// // action creators
+// const loadingTransactions = () => ({
+//   type: LOADING_TRANSACTIONS,
+// });
 
-const gotTransactions = transactions => ({
-  type: FETCH_TRANSACTIONS,
-  transactions,
-});
+// const gotTransactions = transactions => ({
+//   type: FETCH_TRANSACTIONS,
+//   transactions,
+// });
 
-const boughtStock = transaction => ({
-  type: BUY_STOCK,
-  transaction,
-});
+// const boughtStock = transaction => ({
+//   type: BUY_STOCK,
+//   transaction,
+// });
 
-// thunk
-export const fetchTransactions = () => async dispatch => {
-  dispatch(loadingTransactions());
-  const { data } = await axios.get('/api/transactions');
-  dispatch(gotTransactions(data));
-};
+// const soldStock = transaction => ({
+//   type: SELL_STOCK,
+//   transaction,
+// });
 
-export const buyStock = transaction => async dispatch => {
-  const { data } = await axios.post('/api/transactions', transaction);
-  dispatch(boughtStock(data));
-};
+// // thunk
+// export const fetchTransactions = () => async dispatch => {
+//   dispatch(loadingTransactions());
+//   const { data } = await axios.get('/api/transactions');
+//   dispatch(gotTransactions(data));
+// };
 
-// initial state
-const initialState = {
-  all: [],
-  loading: false,
-};
+// export const buyStock = transaction => async dispatch => {
+//   const { data } = await axios.post('/api/transactions', transaction);
+//   dispatch(boughtStock(data));
+// };
 
-// reducer
-export default function(state = initialState, action) {
-  switch (action.type) {
-    case LOADING_TRANSACTIONS:
-      return { ...state, loading: true };
-    case FETCH_TRANSACTIONS:
-      return { ...state, all: action.transactions, loading: false };
-    case BUY_STOCK:
-      return {
-        ...state,
-        all: [...state.all, action.transaction],
-        loading: false,
-      };
-    default:
-      return state;
-  }
-}
+// export const sellStock = transaction => async dispatch => {
+//   const { data } = await axios.post('/api/transactions', transaction);
+//   dispatch(soldStock(data));
+// };
+
+// // initial state
+// const initialState = {
+//   all: [],
+//   loading: false,
+// };
+
+// // reducer
+// export default function(state = initialState, action) {
+//   switch (action.type) {
+//     case LOADING_TRANSACTIONS:
+//       return { ...state, loading: true };
+//     case FETCH_TRANSACTIONS:
+//       return { ...state, all: action.transactions, loading: false };
+//     case BUY_STOCK:
+//       return {
+//         ...state,
+//         all: [...state.all, action.transaction],
+//       };
+//     case SELL_STOCK:
+//       return {
+//         ...state,
+//         all: [...state.all, action.transaction],
+//       };
+//     default:
+//       return state;
+//   }
+// }

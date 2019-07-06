@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchTransactions } from '../store/transactions';
+import { fetchTransactions } from '../store/portfolio';
 import TransactionListView from './TransactionListView';
 import LoadingScreen from './LoadingScreen';
 
@@ -39,8 +39,8 @@ class Transactions extends Component {
 }
 
 const mapState = state => ({
-  transactions: state.transactions.all,
-  loading: state.transactions.loading,
+  transactions: state.portfolio.transactions,
+  loading: state.portfolio.loading,
 });
 
 const mapDispatch = dispatch => ({
