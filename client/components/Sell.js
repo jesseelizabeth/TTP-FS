@@ -31,16 +31,24 @@ class Sell extends Component {
   }
   render() {
     return (
-      <div className="col">
-        <div className="input-field">
+      <div className="row">
+        <div className="col l2">
           <input
-            id="shares"
             type="text"
             onChange={this.handleChange}
             placeholder="Shares"
           />
         </div>
-        <div onClick={this.handleClick}>Sell</div>
+        <div className="col l2">
+          <button
+            disabled={!this.state.shares}
+            className="prefix teal accent-3 btn-small"
+            type="button"
+            onClick={this.handleClick}
+          >
+            Sell
+          </button>
+        </div>
       </div>
     );
   }
