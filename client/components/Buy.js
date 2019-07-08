@@ -24,7 +24,7 @@ class Buy extends Component {
     if (total <= balance && shares % 1 === 0) {
       buyStock({ type: 'buy', symbol, shares, price });
       M.toast({
-        html: `Your purchase was submitted: ${symbol} - ${shares} shares`,
+        html: `Your purchase was submitted: ${symbol} ${shares} shares`,
       });
     } else if (shares % 1 !== 0) {
       M.toast({ html: 'Must buy a whole number of shares!' });
