@@ -21,7 +21,6 @@ class LoadQuote extends Component {
       }/quote?displayPercent=true&token=${token.token}`
     );
     this.setState({ price: data.latestPrice, open: data.open });
-
     const { open, price } = this.state;
     const color = getColor(open, price);
     this.setState({ color });
